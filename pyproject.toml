@@ -1,0 +1,45 @@
+[project]
+name = "picocode"
+version = "0.2.0"
+description = "Production-ready local RAG backend with per-project storage and PyCharm integration"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+  "fastapi>=0.85",
+  "uvicorn>=0.18",
+  "jinja2>=3.0",
+  "requests>=2.25",
+  "tomli>=2.0; python_version < '3.11'",
+  "python-dotenv>=1.0",
+  "openai>=2.2.0",
+  "llama-index>=0.5.9",
+  "sqliteai-vector>=0.9.51",
+  "pydantic>=2.0",
+  "tree-sitter>=0.21.3",
+  "tree-sitter-language-pack>=0.10.0",
+]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ai*", "db*", "services*", "endpoints*"]
+exclude = ["templates*"]
+
+[tool.ruff]
+line-length = 180
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "T20"]
+ignore = ["N806", "W291", "T201"]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.6.2",
+    "pre-commit>=3.0.0"
+]
+
